@@ -19,10 +19,16 @@
       <tr>
         <td>{{ tag.name }}</td>
         <td>
-          <a href="" class="btn btn-sm btn-secondary text-decoration-none">UPDATE</a>
+          <a href="{% url 'tracker:tag_update' pk=tag.id %}"
+             class="btn btn-sm btn-secondary text-decoration-none">
+            UPDATE
+          </a>
         </td>
         <td>
-          <a href="" class="btn btn-sm btn-secondary text-decoration-none">Delete</a>
+          <a href="#"
+             class="btn btn-sm btn-secondary text-decoration-none">
+            Delete
+          </a>
         </td>
       </tr>
     {% endfor %}
