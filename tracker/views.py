@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 
@@ -42,5 +42,18 @@ class TaskCreateView(CreateView):
 
 class TaskUpdateView(UpdateView):
     model = Task
-    success_url =  reverse_lazy("tracker:home")
+    success_url = reverse_lazy("tracker:home")
     form_class = TaskForm
+
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    success_url = reverse_lazy("tracker:home")
+    template_name = "tracker/task_delete_confirm.html"
+
+
+def switch_task_status(request, pk):
+    task = Task.objects.get(id=pk)
+    task.is_done = not task.is_done
+    task.save()
+    return redirect("tracker:home")

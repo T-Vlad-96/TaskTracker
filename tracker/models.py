@@ -20,8 +20,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.content[:50] + ("..." if len(self.content) > 50 else "")
-
-    def save(self, *args, **kwargs):
-        if self.deadline is None:
-            self.deadline = timezone.now() + timedelta(days=1)
-        super().save(*args, **kwargs)

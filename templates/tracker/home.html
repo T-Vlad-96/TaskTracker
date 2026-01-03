@@ -4,7 +4,7 @@
 {% block content %}
   <h1>
     TODO list
-    <a href="{% url 'tracker:task_create' %}" 
+    <a href="{% url 'tracker:task_create' %}"
        class="btn btn-primary float-end">Add task
     </a>
   </h1>
@@ -37,21 +37,28 @@
                class="link-primary text-decoration-none">
               UPDATE
             </a>
-            <a href="#"
+            <a href="{% url 'tracker:task_delete' pk=task.id %}"
                class="link-primary text-decoration-none">
               DELETE
             </a>
           </div>
           <div class="col-sm-2">
             {% if task.is_done %}
-              <a href="#" class="btn btn-success">
-                Complete
+              <a
+                href="{% url 'tracker:switch_task_status' pk=task.id %}"
+                class="btn btn-lg btn-secondary"
+              >
+                Undo
               </a>
             {% else %}
-              <a href="#" class="btn btn-secondary">
-                undo
+              <a
+                href="{% url 'tracker:switch_task_status' pk=task.id %}"
+                class="btn btn-lg btn-success"
+              >
+                Complete
               </a>
             {% endif %}
+
           </div>
         </div>
       </li>
