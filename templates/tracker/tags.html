@@ -3,7 +3,10 @@
 {% block content %}
   <h1>
     Tags
-    <a href="#" class="btn btn-primary float-end">Add</a>
+    <a href="{% url 'tracker:tag_create' %}"
+       class="btn btn-primary float-end">
+      Add
+    </a>
   </h1>
   <hr>
   <table class="table">

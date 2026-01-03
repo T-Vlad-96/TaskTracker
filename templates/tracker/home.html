@@ -4,7 +4,9 @@
 {% block content %}
   <h1>
     TODO list
-    <a href="#" class="btn btn-primary float-end">Add task</a>
+    <a href="{% url 'tracker:task_create' %}" 
+       class="btn btn-primary float-end">Add task
+    </a>
   </h1>
   <ul class="list-group-item list-unstyled border-0">
     {% for task in task_list %}
