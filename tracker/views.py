@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, DeleteView
 
 from .models import Task, Tag
 
@@ -14,6 +14,13 @@ class TagUpdateView(UpdateView):
     model = Tag
     fields = ("name", )
     success_url = reverse_lazy("tracker:home")
+
+
+class TagDeleteView(DeleteView):
+    model = Tag
+    success_url = reverse_lazy("tracker:tags")
+    template_name = "tracker/tag_delete_confirm.html"
+
 
 class HomeListView(ListView):
     model = Task
