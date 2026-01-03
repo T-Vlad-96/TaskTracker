@@ -1,7 +1,8 @@
 from django.urls import path
+from .views import HomeListView
 
-urlspatterns = [
-
+urlpatterns = [
+    path("", HomeListView.as_view(), name="home")
 ]
 
 app_name = "tracker"
