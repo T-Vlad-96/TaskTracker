@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <p>Are you sure you want to delete {{ task }}?</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="delete">
+    <input type="button" value="cancel" onclick="javascript:history.back()">
+  </form>
+{% endblock %}
