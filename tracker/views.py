@@ -38,3 +38,9 @@ class TaskCreateView(CreateView):
     model = Task
     success_url = reverse_lazy("tracker:home")
     form_class = TaskForm
+
+
+class TaskUpdateView(UpdateView):
+    model = Task
+    success_url =  reverse_lazy("tracker:home")
+    form_class = TaskForm

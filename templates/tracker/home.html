@@ -33,7 +33,7 @@
                 {{ tag }};
               {% endfor %}
           </span>
-            <a href="#"
+            <a href="{% url 'tracker:task_update' pk=task.id %}"
                class="link-primary text-decoration-none">
               UPDATE
             </a>
