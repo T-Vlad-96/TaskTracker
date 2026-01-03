@@ -32,6 +32,7 @@ class TagDeleteView(DeleteView):
 class TaskListView(ListView):
     model = Task
     template_name = "tracker/home.html"
+    ordering = ["is_done", "created"]
 
 
 class TaskCreateView(CreateView):
