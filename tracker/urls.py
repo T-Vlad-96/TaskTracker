@@ -8,7 +8,7 @@ from .views import (
     TaskCreateView,
     TaskUpdateView,
     TaskDeleteView,
-    switch_task_status,
+    SwitchTaskStatusView,
 )
 
 urlpatterns = [
@@ -31,7 +31,7 @@ urlpatterns = [
 
     path(
         "switch_task_status/<int:pk>/",
-        switch_task_status,
+        SwitchTaskStatusView.as_view(),
         name="switch_task_status"
     )
 ]

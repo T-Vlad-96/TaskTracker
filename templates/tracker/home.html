@@ -43,27 +43,23 @@
             </a>
           </div>
           <div class="col-sm-2">
-            {% if task.is_done %}
-              <a
-                href="{% url 'tracker:switch_task_status' pk=task.id %}"
-                class="btn btn-lg btn-secondary"
+            <form
+              action="{% url 'tracker:switch_task_status' pk=task.id %}"
+              method="post"
+              class="d-inline"
+            >
+              {% csrf_token %}
+              <button
+                type="submit"
+                class="btn btn-lg {% if task.is_done %}btn-secondary{% else %}btn-success{% endif %}"
               >
-                Undo
-              </a>
-            {% else %}
-              <a
-                href="{% url 'tracker:switch_task_status' pk=task.id %}"
-                class="btn btn-lg btn-success"
-              >
-                Complete
-              </a>
-            {% endif %}
-
+                {% if task.is_done %}Undo{% else %}Complete{% endif %}
+              </button>
+            </form>
           </div>
         </div>
       </li>
       <hr>
-
     {% endfor %}
   </ul>
 {% endblock %}

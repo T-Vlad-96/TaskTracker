@@ -1,6 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, DeleteView, CreateView
+from django.views.generic import (
+    ListView,
+    UpdateView,
+    DeleteView,
+    CreateView,
+    View,
+)
 
 from .forms import TaskForm
 from .models import Task, Tag
@@ -53,8 +59,10 @@ class TaskDeleteView(DeleteView):
     template_name = "tracker/task_delete_confirm.html"
 
 
-def switch_task_status(request, pk):
-    task = Task.objects.get(id=pk)
-    task.is_done = not task.is_done
-    task.save()
-    return redirect("tracker:home")
+class SwitchTaskStatusView(View):
+
+    def post(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+        task.is_done = not task.is_done
+        task.save()
+        return redirect("tracker:home")
